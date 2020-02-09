@@ -17,6 +17,7 @@
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:background="@drawable/button_background"
+        android:fontFamily="@font/montserrat_bold"
         android:text="+ New"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
