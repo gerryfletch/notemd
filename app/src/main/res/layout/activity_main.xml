@@ -11,30 +11,27 @@
         android:id="@+id/newNote"
         android:layout_width="120dp"
         android:layout_height="55dp"
-        android:layout_marginStart="156dp"
-        android:layout_marginLeft="156dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginRight="156dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/button_background"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/new_button"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesList"
-        android:layout_width="378dp"
-        android:layout_height="563dp"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newNote" />
+        app:layout_constraintTop_toBottomOf="@id/newNote"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
