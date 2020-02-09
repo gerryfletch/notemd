@@ -20,7 +20,9 @@
         android:text="@string/new_button"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:elevation="1dp"
+        android:translationZ="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notesList"

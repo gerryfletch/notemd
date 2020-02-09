@@ -6,9 +6,10 @@
     android:layout_height="wrap_content"
     android:background="@drawable/note_meta_container"
     android:layout_marginBottom="15dp"
-    android:padding="10dp"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="15dp"
     android:elevation="1dp"
-    android:translationZ="5dp"
+    android:translationZ="3dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -29,13 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rowTitle"
         android:fontFamily="@font/roboto_regular"
         android:maxLines="1"
         android:text="@string/created_label"
         android:textColor="@color/lightGray"
-        android:textSize="12sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rowTitle" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/createdAt"
@@ -44,6 +45,34 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
         app:layout_constraintLeft_toRightOf="@id/createdAtLabel"
+        app:layout_constraintTop_toBottomOf="@id/rowTitle"
+        android:maxLines="1"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/modifiedAtLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintRight_toLeftOf="@id/modifiedAt"
+        app:layout_constraintTop_toBottomOf="@id/rowTitle"
+        android:maxLines="1"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/modified_label"
+        android:textColor="@color/lightGray"
+        android:textSize="12sp"
+        />
+
+    <TextView
+        android:id="@+id/modifiedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rowTitle"
         android:maxLines="1"
         android:fontFamily="@font/roboto_medium"
