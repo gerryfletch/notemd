@@ -21,10 +21,6 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
         NoteDescription(View v) {
             super(v);
             title = v.findViewById(R.id.rowTitle);
-            System.out.println(("--- result of getting title ---"));
-            System.out.println(title);
-            System.out.println("--- view ---");
-            System.out.println(v);
             createdAt = v.findViewById(R.id.createdAt);
         }
     }
@@ -42,7 +38,6 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
 
     @Override
     public void onBindViewHolder(@NonNull NoteDescription holder, int position) {
-        System.out.println(data.get(position).getTitle());
         holder.title.setText(data.get(position).getTitle());
         holder.createdAt.setText(data.get(position).getCreatedAt());
     }
