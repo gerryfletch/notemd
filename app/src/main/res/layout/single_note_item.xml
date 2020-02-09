@@ -1,56 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    android:padding="10dp">
+    android:background="@drawable/note_meta_container"
+    android:layout_marginBottom="15dp"
+    android:padding="10dp"
+    android:elevation="1dp"
+    android:translationZ="5dp"
+    tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/singleRow"
+    <TextView
+        android:id="@+id/rowTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="10dp"
-        android:translationZ="1dp"
-        android:background="@drawable/note_meta_container"
-        android:elevation="5dp">
+        android:fontFamily="@font/roboto_medium"
+        android:maxLines="1"
+        android:textColor="@color/darkGray"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="10dp" />
 
-        <TextView
-            android:id="@+id/rowTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:maxLines="1"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/darkGray"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/createdAtLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:maxLines="1"
+        android:text="@string/created_label"
+        android:textColor="@color/lightGray"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rowTitle" />
 
-        <TextView
-            android:id="@+id/createdAtLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rowTitle"
-            android:layout_alignTop="@+id/rowTitle"
-            android:layout_marginTop="30dp"
-            android:maxLines="1"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@string/created_label"
-            android:textColor="@color/lightGray"
-            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/createdAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintLeft_toRightOf="@id/createdAtLabel"
+        app:layout_constraintTop_toBottomOf="@id/rowTitle"
+        android:maxLines="1"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        />
 
-        <TextView
-            android:id="@+id/createdAt"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rowTitle"
-            android:layout_alignTop="@+id/rowTitle"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="30dp"
-            android:layout_toEndOf="@+id/createdAtLabel"
-            android:maxLines="1"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/gray"
-            android:textSize="12sp" />
-    </RelativeLayout>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/createdAt"-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_below="@+id/rowTitle"-->
+    <!--            android:layout_alignTop="@+id/rowTitle"-->
+    <!--            android:layout_marginStart="5dp"-->
+    <!--            android:layout_marginTop="30dp"-->
+    <!--            android:layout_toEndOf="@+id/createdAtLabel"-->
+    <!--            android:maxLines="1"-->
+    <!--            android:fontFamily="@font/roboto_medium"-->
+    <!--            android:textColor="@color/gray"-->
+    <!--            android:textSize="12sp" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/modifiedAtLabel"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_below="@+id/rowTitle"-->
+    <!--            android:layout_alignTop="@+id/rowTitle"-->
+    <!--            android:layout_marginTop="32dp"-->
+    <!--            android:fontFamily="@font/roboto_regular"-->
+    <!--            android:maxLines="1"-->
+    <!--            android:text="@string/created_label"-->
+    <!--            android:textColor="@color/lightGray"-->
+    <!--            android:textSize="12sp" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/modifiedAt"-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_below="@+id/rowTitle"-->
+    <!--            android:layout_alignTop="@+id/rowTitle"-->
+    <!--            android:layout_marginStart="5dp"-->
+    <!--            android:layout_marginTop="30dp"-->
+    <!--            android:layout_toEndOf="@+id/createdAtLabel"-->
+    <!--            android:maxLines="1"-->
+    <!--            android:fontFamily="@font/roboto_medium"-->
+    <!--            android:textColor="@color/gray"-->
+    <!--            android:textSize="12sp" />-->
+    <!--    </RelativeLayout>-->
+    <!--</RelativeLayout>-->
