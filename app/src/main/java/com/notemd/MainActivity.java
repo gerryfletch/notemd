@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         List<NoteMeta> notes = Arrays.asList(
                 new NoteMeta("Intro to Python, Class One", "TWO DAYS AGO", "YESTERDAY"),
-                new NoteMeta("", "", ""),
-                new NoteMeta("", "", "")
+                new NoteMeta("Scala Futures API", "THREE DAYS AGO", "THREE DAYS AGO"),
+                new NoteMeta("My First Note", "01/11/2019", "03/11/2019")
         );
 
         recyclerView.setAdapter(new NotesListAdapter(notes));
