@@ -29,7 +29,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
         }
     }
 
-    NotesListAdapter(List<NoteMeta> data) {
+    public NotesListAdapter(List<NoteMeta> data) {
         this.data = data;
     }
 

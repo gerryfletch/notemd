@@ -26,7 +26,7 @@ public class Note {
     @ColumnInfo
     private String note;
 
-    Note(long noteId, String title, Date created, Date modified, String note) {
+    public Note(long noteId, String title, Date created, Date modified, String note) {
         this.noteId = noteId;
         this.title = title;
         this.created = created;
