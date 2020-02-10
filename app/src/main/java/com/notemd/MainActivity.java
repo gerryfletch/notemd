@@ -1,14 +1,18 @@
 package com.notemd;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.view.View;
-
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +22,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         this.renderNoteList();
+        this.testDao();
+    }
+
+    @SuppressLint("CheckResult")
+    private void testDao() {
+        Note note = new Note(0, "Database Note", new Date(), new Date(), "blabla");
+        System.out.println("Created note.");
+
+        NoteDao noteDao = AppDatabase.get(getApplicationContext()).noteDao();
+
+        System.out.println("Got DB instance reference.");
+
+        noteDao.insertNote(note)
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                        noteId -> System.out.println("Successfully stored note with id: " + noteId),
+                        e -> System.out.println("ERROR:" + e.getMessage())
+                );
     }
 
     private void renderNoteList() {
