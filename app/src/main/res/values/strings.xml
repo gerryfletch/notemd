@@ -3,4 +3,5 @@
     <string name="new_button">+ New</string>
     <string name="created_label">CREATED</string>
     <string name="modified_label">MODIFIED</string>
+    <string name="total_label">TOTAL</string>
 </resources>
