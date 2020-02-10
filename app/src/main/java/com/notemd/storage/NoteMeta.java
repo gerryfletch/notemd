@@ -1,4 +1,4 @@
-package com.notemd;
+package com.notemd.storage;
 
 public class NoteMeta {
     private final String title;

@@ -1,4 +1,4 @@
-package com.notemd;
+package com.notemd.storage;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -34,23 +34,23 @@ public class Note {
         this.note = note;
     }
 
-    long getNoteId() {
+    public long getNoteId() {
         return noteId;
     }
 
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    Date getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    Date getModified() {
+    public Date getModified() {
         return modified;
     }
 
-    String getNote() {
+    public String getNote() {
         return note;
     }
 }

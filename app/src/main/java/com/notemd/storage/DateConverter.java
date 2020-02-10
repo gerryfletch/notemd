@@ -1,4 +1,4 @@
-package com.notemd;
+package com.notemd.storage;
 
 import androidx.room.TypeConverter;
 

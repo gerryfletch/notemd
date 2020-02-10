@@ -8,6 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.notemd.storage.AppDatabase;
+import com.notemd.storage.Note;
+import com.notemd.storage.NoteDao;
+import com.notemd.storage.NoteMeta;
+import com.notemd.storage.NotesListAdapter;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;

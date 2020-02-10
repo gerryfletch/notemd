@@ -1,4 +1,4 @@
-package com.notemd;
+package com.notemd.storage;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.notemd.R;
 
 import java.util.List;
 
