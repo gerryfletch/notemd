@@ -17,7 +17,7 @@ public interface NoteDao {
     Single<List<Note>> getAllNotes();
 
     @Query("SELECT * FROM note WHERE noteId = :noteId LIMIT 1")
-    Maybe<Note> getNote(int noteId);
+    Maybe<Note> getNote(long noteId);
 
     @Insert
     Single<Long> insertNote(Note note);
