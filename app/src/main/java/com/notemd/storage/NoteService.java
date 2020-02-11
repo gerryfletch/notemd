@@ -2,6 +2,8 @@ package com.notemd.storage;
 
 import android.content.Context;
 
+import com.notemd.Note;
+
 import java.util.List;
 
 import io.reactivex.Single;

@@ -1,9 +1,11 @@
-package com.notemd.storage;
+package com.notemd;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
+
+import com.notemd.storage.DateConverter;
 
 import java.util.Date;
 

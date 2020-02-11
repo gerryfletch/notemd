@@ -4,6 +4,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.notemd.Note;
+
 import java.util.List;
 
 import io.reactivex.Maybe;
