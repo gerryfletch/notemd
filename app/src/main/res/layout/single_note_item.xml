@@ -12,7 +12,7 @@
     android:paddingRight="15dp"
     android:elevation="1dp"
     android:translationZ="3dp"
-    tools:context=".MainActivity">
+    tools:context=".main.MainActivity">
 
     <TextView
         android:id="@+id/rowTitle"
