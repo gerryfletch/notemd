@@ -28,7 +28,7 @@ public class ViewActivity extends AppCompatActivity {
         }
 
         returnToMain = new Intent(ViewActivity.this, MainActivity.class);
-        markwon = Markwon.create(getApplicationContext());
+        markwon = Markwon.create(this);
 
         note = (Note) getIntent().getSerializableExtra("note");
         if (note == null || note.getNoteId() <= 0) {
