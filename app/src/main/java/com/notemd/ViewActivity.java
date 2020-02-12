@@ -55,8 +55,9 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     private Intent createWriteIntent() {
-        Intent goToView = new Intent(ViewActivity.this, WriteActivity.class);
-        goToView.putExtra("noteId", note.getNoteId());
-        return goToView;
+        Intent goToEdit = new Intent(ViewActivity.this, WriteActivity.class);
+        goToEdit.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        goToEdit.putExtra("noteId", note.getNoteId());
+        return goToEdit;
     }
 }

@@ -98,6 +98,7 @@ public class WriteActivity extends AppCompatActivity {
 
     private Intent createViewIntent() {
         Intent goToView = new Intent(WriteActivity.this, ViewActivity.class);
+        goToView.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         goToView.putExtra("note", note);
         return goToView;
     }
