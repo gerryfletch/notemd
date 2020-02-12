@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:padding="10dp"
     tools:context=".WriteActivity">
 
     <Button
@@ -23,6 +24,7 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:importantForAutofill="no"
+        android:hint="@string/editTextPlaceholder"
         app:layout_constraintTop_toBottomOf="@id/backButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
