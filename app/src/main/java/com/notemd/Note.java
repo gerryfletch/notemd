@@ -7,10 +7,11 @@ import androidx.room.TypeConverters;
 
 import com.notemd.storage.DateConverter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Note implements Comparable<Note> {
+public class Note implements Comparable<Note>, Serializable {
     @PrimaryKey(autoGenerate = true)
     private long noteId;
 

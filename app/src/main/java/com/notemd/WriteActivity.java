@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
@@ -41,6 +42,7 @@ public class WriteActivity extends AppCompatActivity {
         returnToMain = new Intent(WriteActivity.this, MainActivity.class);
 
         this.setupBackButton();
+        this.setupViewButton();
 
         long noteId = getIntent().getLongExtra("noteId", 0);
         if (noteId <= 0) {
@@ -72,6 +74,7 @@ public class WriteActivity extends AppCompatActivity {
     private void displayNote(Note note) {
         composite.clear();
         this.isNoteDisplayed = true;
+        System.out.println("Displaying note. Note should be set...");
         this.note = note;
         ((EditText) findViewById(R.id.editText)).setText(note.getNote());
     }
@@ -86,6 +89,17 @@ public class WriteActivity extends AppCompatActivity {
                     });
             composite.add(disposable);
         });
+    }
+
+    private void setupViewButton() {
+        findViewById(R.id.editButton).setOnClickListener(l -> startActivity(createViewIntent()));
+        findViewById(R.id.viewButton).setOnClickListener(l -> startActivity(createViewIntent()));
+    }
+
+    private Intent createViewIntent() {
+        Intent goToView = new Intent(WriteActivity.this, ViewActivity.class);
+        goToView.putExtra("note", note);
+        return goToView;
     }
 
     private Completable updateNote() {
