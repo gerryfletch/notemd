@@ -91,8 +91,10 @@ public class WriteActivity extends AppCompatActivity {
     private Completable updateNote() {
         if (isNoteDisplayed) {
             String noteContent = ((EditText) findViewById(R.id.editText)).getText().toString();
-            Note updatedNote = Note.update(note, noteContent);
-            return this.noteService.updateNote(updatedNote);
+            if (!noteContent.equals(note.getNote())) {
+                Note updatedNote = Note.update(note, noteContent);
+                return this.noteService.updateNote(updatedNote);
+            }
         }
         return Completable.complete();
     }
