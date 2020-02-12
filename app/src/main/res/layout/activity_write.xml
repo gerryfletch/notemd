@@ -13,23 +13,50 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/ic_back_arrow"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:paddingEnd="5dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center_vertical"
+        android:text="EDIT"
+        android:textColor="@color/darkGray"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/viewButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center_vertical"
+        android:text="VIEW"
+        android:textColor="@color/lightGray"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:importantForAutofill="no"
+        android:paddingTop="10dp"
         android:cursorVisible="true"
+        android:ems="10"
         android:fontFamily="@font/roboto_regular"
+        android:gravity="start|top"
+        android:hint="@string/edit_text_placeholder"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
         android:textColor="@color/darkGray"
-        android:hint="@string/editTextPlaceholder"
-        app:layout_constraintTop_toBottomOf="@id/backButton"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
