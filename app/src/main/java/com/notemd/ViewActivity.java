@@ -17,6 +17,7 @@ public class ViewActivity extends AppCompatActivity {
 
     private Intent returnToMain;
     private Markwon markwon;
+    private Note note;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,17 +30,33 @@ public class ViewActivity extends AppCompatActivity {
         returnToMain = new Intent(ViewActivity.this, MainActivity.class);
         markwon = Markwon.create(getApplicationContext());
 
-        Note note = (Note) getIntent().getSerializableExtra("note");
+        note = (Note) getIntent().getSerializableExtra("note");
         if (note == null || note.getNoteId() <= 0) {
             startActivity(returnToMain);
         } else {
             displayMarkdown(note);
+            setupBackButton();
+            setupEditButton();
         }
     }
 
     private void displayMarkdown(Note note) {
         TextView displayText = findViewById(R.id.viewText);
-        System.out.println(displayText);
         markwon.setMarkdown(displayText, note.getNote());
+    }
+
+    private void setupBackButton() {
+        findViewById(R.id.backButton).setOnClickListener(l -> startActivity(returnToMain));
+    }
+
+    private void setupEditButton() {
+        findViewById(R.id.editButton).setOnClickListener(l -> startActivity(createWriteIntent()));
+        findViewById(R.id.viewButton).setOnClickListener(l -> startActivity(createWriteIntent()));
+    }
+
+    private Intent createWriteIntent() {
+        Intent goToView = new Intent(ViewActivity.this, WriteActivity.class);
+        goToView.putExtra("noteId", note.getNoteId());
+        return goToView;
     }
 }

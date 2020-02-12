@@ -41,5 +41,6 @@ dependencies {
     implementation "io.noties.markwon:core:$markwon_version"
     implementation "io.noties.markwon:editor:$markwon_version"
     implementation "io.noties.markwon:syntax-highlight:$markwon_version"
+    annotationProcessor "io.noties:prism4j-bundler:2.0.0"
 
 }
