@@ -10,7 +10,7 @@ import com.notemd.storage.DateConverter;
 import java.util.Date;
 
 @Entity
-public class Note {
+public class Note implements Comparable<Note> {
     @PrimaryKey(autoGenerate = true)
     private long noteId;
 
@@ -36,6 +36,18 @@ public class Note {
         this.note = note;
     }
 
+    static Note update(Note prev, String note) {
+        String[] lines = note.split("\n");
+        String title = lines.length > 0 ? lines[0] : "";
+        return new Note(
+                prev.getNoteId(),
+                title,
+                prev.getCreated(),
+                new Date(),
+                note
+        );
+    }
+
     public long getNoteId() {
         return noteId;
     }
@@ -54,5 +66,10 @@ public class Note {
 
     public String getNote() {
         return note;
+    }
+
+    @Override
+    public int compareTo(Note o) {
+        return o.getModified().compareTo(getModified());
     }
 }

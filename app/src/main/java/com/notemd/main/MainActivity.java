@@ -1,4 +1,4 @@
-package com.notemd;
+package com.notemd.main;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,9 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.notemd.main.NoteMeta;
+import com.notemd.Note;
+import com.notemd.R;
+import com.notemd.WriteActivity;
 import com.notemd.storage.NoteService;
-import com.notemd.main.NotesListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
