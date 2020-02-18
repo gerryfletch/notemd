@@ -1,5 +1,7 @@
 package com.notemd;
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -13,11 +15,17 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
     private final List<NoteMeta> data;
 
     static class NoteDescription extends RecyclerView.ViewHolder {
-        TextView textView;
+        TextView title;
+        TextView createdAt;
 
-        NoteDescription(TextView v) {
+        NoteDescription(View v) {
             super(v);
-            textView = v;
+            title = v.findViewById(R.id.rowTitle);
+            System.out.println(("--- result of getting title ---"));
+            System.out.println(title);
+            System.out.println("--- view ---");
+            System.out.println(v);
+            createdAt = v.findViewById(R.id.createdAt);
         }
     }
 
@@ -28,12 +36,15 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
     @NonNull
     @Override
     public NoteDescription onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NoteDescription(new TextView(parent.getContext()));
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_note_item, parent, false);
+        return new NoteDescription(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull NoteDescription holder, int position) {
-        holder.textView.setText(data.get(position).getTitle());
+        System.out.println(data.get(position).getTitle());
+        holder.title.setText(data.get(position).getTitle());
+        holder.createdAt.setText(data.get(position).getCreatedAt());
     }
 
     @Override
