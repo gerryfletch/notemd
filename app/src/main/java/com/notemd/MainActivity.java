@@ -1,19 +1,20 @@
 package com.notemd;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.notemd.storage.Note;
-import com.notemd.storage.NoteMeta;
+import com.notemd.main.NoteMeta;
 import com.notemd.storage.NoteService;
-import com.notemd.storage.NotesListAdapter;
+import com.notemd.main.NotesListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,15 @@ public class MainActivity extends AppCompatActivity {
 
         this.prepareNoteListView();
         this.asyncRenderNoteList();
+        this.configureNewButton();
+    }
+
+    private void configureNewButton() {
+        Intent intent = new Intent(MainActivity.this, WriteActivity.class);
+        intent.putExtra("noteId", 0);
+
+        Button newButton = findViewById(R.id.newNote);
+        newButton.setOnClickListener(v -> startActivity(intent));
     }
 
     @SuppressLint("CheckResult")
@@ -64,7 +74,11 @@ public class MainActivity extends AppCompatActivity {
     private void renderNoteList(List<NoteMeta> noteMetas) {
         this.composite.dispose();
         RecyclerView recyclerView = findViewById(R.id.notesList);
-        recyclerView.setAdapter(new NotesListAdapter(noteMetas));
+        recyclerView.setAdapter(new NotesListAdapter(noteMetas, position -> {
+            Intent intent = new Intent(MainActivity.this, WriteActivity.class);
+            intent.putExtra("noteId", noteMetas.get(position).getNoteId());
+            startActivity(intent);
+        }));
 
         ((TextView) findViewById(R.id.totalValue)).setText(String.valueOf(noteMetas.size()));
     }
@@ -74,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new NotesListAdapter(new ArrayList<>()));
+        recyclerView.setAdapter(new NotesListAdapter(new ArrayList<>(), null));
     }
+
+
 }
