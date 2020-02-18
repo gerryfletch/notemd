@@ -17,11 +17,13 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
     static class NoteDescription extends RecyclerView.ViewHolder {
         TextView title;
         TextView createdAt;
+        TextView modifiedAt;
 
         NoteDescription(View v) {
             super(v);
             title = v.findViewById(R.id.rowTitle);
             createdAt = v.findViewById(R.id.createdAt);
+            modifiedAt = v.findViewById(R.id.modifiedAt);
         }
     }
 
@@ -38,8 +40,10 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
 
     @Override
     public void onBindViewHolder(@NonNull NoteDescription holder, int position) {
-        holder.title.setText(data.get(position).getTitle());
-        holder.createdAt.setText(data.get(position).getCreatedAt());
+        NoteMeta note = data.get(position);
+        holder.title.setText(note.getTitle());
+        holder.createdAt.setText(note.getCreatedAt());
+        holder.modifiedAt.setText(note.getModifiedAt());
     }
 
     @Override
