@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="10dp">
 
     <RelativeLayout
         android:id="@+id/singleRow"
         android:layout_width="match_parent"
-        android:layout_height="93dp"
-        android:background="@android:color/white"
-        android:padding="15dp">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        android:translationZ="1dp"
+        android:background="@drawable/note_meta_container"
+        android:elevation="5dp">
 
         <TextView
             android:id="@+id/rowTitle"
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="5dp"
             android:maxLines="1"
-            android:text="Intro to Python, Class One"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/darkGray"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/createdAtLabel"
@@ -25,12 +32,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rowTitle"
             android:layout_alignTop="@+id/rowTitle"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:maxLines="1"
-            android:text="CREATED:"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/created_label"
             android:textColor="@color/lightGray"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/createdAt"
@@ -39,14 +46,11 @@
             android:layout_below="@+id/rowTitle"
             android:layout_alignTop="@+id/rowTitle"
             android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:layout_toEndOf="@+id/createdAtLabel"
-            android:layout_toRightOf="@+id/createdAtLabel"
             android:maxLines="1"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
     </RelativeLayout>
-
 </RelativeLayout>

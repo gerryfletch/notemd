@@ -3,5 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="lightGray">#d7d7d7</color>
+
+    <!-- Text -->
+    <color name="lightGray">#b3b3b3</color>
+    <color name="gray">#585858</color>
+    <color name="darkGray">#1f1f1f</color>
+
+    <!-- Gradient Colours -->
+    <color name="lightPurple">#5757f4</color>
+    <color name="darkPurple">#4412e8</color>
 </resources>
