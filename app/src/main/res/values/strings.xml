@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">notemd</string>
+    <string name="new_button">+ NEW</string>
     <string name="created_label">CREATED</string>
     <string name="modified_label">MODIFIED</string>
 </resources>
