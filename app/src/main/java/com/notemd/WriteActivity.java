@@ -18,6 +18,8 @@ import java.util.concurrent.Executors;
 import io.noties.markwon.Markwon;
 import io.noties.markwon.editor.MarkwonEditor;
 import io.noties.markwon.editor.MarkwonEditorTextWatcher;
+import io.noties.markwon.editor.handler.EmphasisEditHandler;
+import io.noties.markwon.editor.handler.StrongEmphasisEditHandler;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -82,7 +84,8 @@ public class WriteActivity extends AppCompatActivity {
         editText.setText(note.getNote());
 
         final MarkwonEditor editor = MarkwonEditor.builder(Markwon.create(this))
-                .useEditHandler(new NoteEditor())
+                .useEditHandler(new StrongEmphasisEditHandler())
+                .useEditHandler(new EmphasisEditHandler())
                 .build();
 
         editor.preRender(editText.getText(), result -> result.dispatchTo(editText.getText()));
