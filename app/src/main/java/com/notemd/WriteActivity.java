@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.Nullable;
@@ -14,7 +13,11 @@ import com.notemd.main.MainActivity;
 import com.notemd.storage.NoteService;
 
 import java.util.Date;
+import java.util.concurrent.Executors;
 
+import io.noties.markwon.Markwon;
+import io.noties.markwon.editor.MarkwonEditor;
+import io.noties.markwon.editor.MarkwonEditorTextWatcher;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -74,9 +77,19 @@ public class WriteActivity extends AppCompatActivity {
     private void displayNote(Note note) {
         composite.clear();
         this.isNoteDisplayed = true;
-        System.out.println("Displaying note. Note should be set...");
         this.note = note;
-        ((EditText) findViewById(R.id.editText)).setText(note.getNote());
+        EditText editText = findViewById(R.id.editText);
+        editText.setText(note.getNote());
+
+        final MarkwonEditor editor = MarkwonEditor.builder(Markwon.create(this))
+                .useEditHandler(new NoteEditor())
+                .build();
+
+        editor.preRender(editText.getText(), result -> result.dispatchTo(editText.getText()));
+        editText.addTextChangedListener(MarkwonEditorTextWatcher.withPreRender(
+                editor,
+                Executors.newCachedThreadPool(),
+                editText));
     }
 
     private void setupBackButton() {
@@ -92,15 +105,20 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     private void setupViewButton() {
-        findViewById(R.id.editButton).setOnClickListener(l -> startActivity(createViewIntent()));
-        findViewById(R.id.viewButton).setOnClickListener(l -> startActivity(createViewIntent()));
+        findViewById(R.id.editButton).setOnClickListener(l -> navigateToView());
+        findViewById(R.id.viewButton).setOnClickListener(l -> navigateToView());
     }
 
-    private Intent createViewIntent() {
-        Intent goToView = new Intent(WriteActivity.this, ViewActivity.class);
-        goToView.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        goToView.putExtra("note", note);
-        return goToView;
+    private void navigateToView() {
+        Disposable disposable = this.updateNote().observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> {
+                    composite.clear();
+                    Intent goToView = new Intent(WriteActivity.this, ViewActivity.class);
+                    goToView.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    goToView.putExtra("note", note);
+                    startActivity(goToView);
+                });
+        composite.add(disposable);
     }
 
     private Completable updateNote() {
@@ -108,6 +126,7 @@ public class WriteActivity extends AppCompatActivity {
             String noteContent = ((EditText) findViewById(R.id.editText)).getText().toString();
             if (!noteContent.equals(note.getNote())) {
                 Note updatedNote = Note.update(note, noteContent);
+                this.note = updatedNote;
                 return this.noteService.updateNote(updatedNote);
             }
         }
