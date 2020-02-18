@@ -1,33 +1,36 @@
 package com.notemd.storage;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 public class NoteMeta {
     private final String title;
     private final String createdAt;
     private final String modifiedAt;
 
-    public NoteMeta(String title, String createdAt, String modifiedAt) {
+    private NoteMeta(String title, String createdAt, String modifiedAt) {
         this.title = title;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
     public static NoteMeta fromNote(Note note) {
+        PrettyTime prettyTime = new PrettyTime();
         return new NoteMeta(
                 note.getTitle(),
-                note.getCreated().toString(),
-                note.getModified().toString()
+                prettyTime.format(note.getCreated()),
+                prettyTime.format(note.getModified())
         );
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public String getCreatedAt() {
+    String getCreatedAt() {
         return createdAt;
     }
 
-    public String getModifiedAt() {
+    String getModifiedAt() {
         return modifiedAt;
     }
 }
