@@ -85,4 +85,9 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
     public int getItemCount() {
         return data.size();
     }
+
+    public void deleteItem(int position) {
+        this.data.remove(position);
+        notifyItemRemoved(position);
+    }
 }
