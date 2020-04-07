@@ -54,7 +54,6 @@ public class ViewActivity extends AppCompatActivity {
 
     private void displayMarkdown(Note note) {
         TextView displayText = findViewById(R.id.viewText);
-        System.out.println(note.getNote());
         markwon.setMarkdown(displayText, note.getNote());
     }
 
