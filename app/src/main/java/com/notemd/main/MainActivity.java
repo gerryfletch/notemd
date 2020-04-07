@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, WriteActivity.class);
             intent.putExtra("noteId", noteMetas.get(position).getNoteId());
             startActivity(intent);
-        });
+        }, noteService);
 
         RecyclerView recyclerView = findViewById(R.id.notesList);
         recyclerView.setAdapter(this.notesListAdapter);
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareNoteListView() {
-        this.notesListAdapter = new NotesListAdapter(new ArrayList<>(), null);
+        this.notesListAdapter = new NotesListAdapter(new ArrayList<>(), null, noteService);
         RecyclerView recyclerView = findViewById(R.id.notesList);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

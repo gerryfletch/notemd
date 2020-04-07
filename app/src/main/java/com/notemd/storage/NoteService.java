@@ -28,6 +28,12 @@ public class NoteService {
         return this.noteDao.updateNote(note).subscribeOn(Schedulers.io());
     }
 
+    public void deleteNote(long id) {
+        Completable.fromAction(() -> this.noteDao.delete(id))
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+    }
+
     public Single<List<Note>> getNotes() {
         return this.noteDao.getAllNotes()
                 .map(list -> {

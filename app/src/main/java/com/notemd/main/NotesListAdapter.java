@@ -10,13 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.notemd.R;
+import com.notemd.storage.NoteService;
 
 import java.util.List;
 
 public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.NoteDescription> {
 
-    private final List<NoteMeta> data;
+    private final List<NoteMeta> notes;
     private final OnNoteDescriptionClick clickHandler;
+    private final NoteService noteService;
 
     public interface OnNoteDescriptionClick {
         void onNoteDescriptionClick(int position);
@@ -61,9 +63,10 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
         }
     }
 
-    public NotesListAdapter(List<NoteMeta> data, OnNoteDescriptionClick clickHandler) {
-        this.data = data;
+    public NotesListAdapter(List<NoteMeta> data, OnNoteDescriptionClick clickHandler, NoteService noteService) {
+        this.notes = data;
         this.clickHandler = clickHandler;
+        this.noteService = noteService;
     }
 
     @NonNull
@@ -75,7 +78,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
 
     @Override
     public void onBindViewHolder(@NonNull NoteDescription holder, int position) {
-        NoteMeta note = data.get(position);
+        NoteMeta note = notes.get(position);
         holder.title.setText(note.getTitle());
         holder.createdAt.setText(note.getCreatedAt());
         holder.modifiedAt.setText(note.getModifiedAt());
@@ -83,11 +86,12 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return notes.size();
     }
 
     public void deleteItem(int position) {
-        this.data.remove(position);
+        long id = this.notes.remove(position).getNoteId();
+        this.noteService.deleteNote(id);
         notifyItemRemoved(position);
     }
 }
