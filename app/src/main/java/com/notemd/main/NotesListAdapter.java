@@ -1,6 +1,10 @@
 package com.notemd.main;
 
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,7 +25,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
         void onNoteDescriptionClick(int position);
     }
 
-    static class NoteDescription extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class NoteDescription extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnTouchListener {
         TextView title;
         TextView createdAt;
         TextView modifiedAt;
@@ -34,12 +38,25 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
             this.modifiedAt = v.findViewById(R.id.modifiedAt);
             this.clickHandler = clickHandler;
 
+            v.setOnTouchListener(this);
             v.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             this.clickHandler.onNoteDescriptionClick(getAdapterPosition());
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                v.setElevation(5);
+            } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+                v.setElevation(1);
+            } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                v.performClick();
+            }
+            return true;
         }
     }
 
