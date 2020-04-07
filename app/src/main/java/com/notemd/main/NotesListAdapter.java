@@ -1,8 +1,5 @@
 package com.notemd.main;
 
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,13 +45,17 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.Note
         }
 
         @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                v.setElevation(5);
-            } else if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-                v.setElevation(1);
-            } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                v.performClick();
+        public boolean onTouch(View v, MotionEvent e) {
+            switch (e.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    v.setElevation(5);
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    v.setElevation(1);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    v.performClick();
+                    break;
             }
             return true;
         }
