@@ -16,7 +16,6 @@ import org.commonmark.node.SoftLineBreak;
 
 import io.noties.markwon.AbstractMarkwonPlugin;
 import io.noties.markwon.Markwon;
-import io.noties.markwon.MarkwonConfiguration;
 import io.noties.markwon.MarkwonVisitor;
 
 public class ViewActivity extends AppCompatActivity {
