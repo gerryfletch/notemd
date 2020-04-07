@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.notemd.main.MainActivity;
 
+import org.commonmark.node.SoftLineBreak;
+
+import io.noties.markwon.AbstractMarkwonPlugin;
 import io.noties.markwon.Markwon;
+import io.noties.markwon.MarkwonVisitor;
 
 public class ViewActivity extends AppCompatActivity {
 
@@ -28,7 +33,14 @@ public class ViewActivity extends AppCompatActivity {
         }
 
         returnToMain = new Intent(ViewActivity.this, MainActivity.class);
-        markwon = Markwon.create(this);
+
+        markwon = Markwon.builder(this)
+                .usePlugin(new AbstractMarkwonPlugin() {
+                    @Override
+                    public void configureVisitor(@NonNull MarkwonVisitor.Builder builder) {
+                        builder.on(SoftLineBreak.class, (visitor, softLineBreak) -> visitor.forceNewLine());
+                    }
+                }).build();
 
         note = (Note) getIntent().getSerializableExtra("note");
         if (note == null || note.getNoteId() <= 0) {
