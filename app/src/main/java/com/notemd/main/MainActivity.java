@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CompositeDisposable composite;
     private NoteService noteService;
+    private NotesListAdapter notesListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,22 +76,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void renderNoteList(List<NoteMeta> noteMetas) {
         this.composite.dispose();
-        RecyclerView recyclerView = findViewById(R.id.notesList);
-        recyclerView.setAdapter(new NotesListAdapter(noteMetas, position -> {
+        this.notesListAdapter = new NotesListAdapter(noteMetas, position -> {
             Intent intent = new Intent(MainActivity.this, WriteActivity.class);
             intent.putExtra("noteId", noteMetas.get(position).getNoteId());
             startActivity(intent);
-        }));
+        }, noteService);
 
+        RecyclerView recyclerView = findViewById(R.id.notesList);
+        recyclerView.setAdapter(this.notesListAdapter);
         ((TextView) findViewById(R.id.totalValue)).setText(String.valueOf(noteMetas.size()));
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new NoteListGestureHandler(this.notesListAdapter)
+        );
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void prepareNoteListView() {
+        this.notesListAdapter = new NotesListAdapter(new ArrayList<>(), null, noteService);
         RecyclerView recyclerView = findViewById(R.id.notesList);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new NotesListAdapter(new ArrayList<>(), null));
+        recyclerView.setAdapter(this.notesListAdapter);
     }
 
 

@@ -27,4 +27,7 @@ public interface NoteDao {
     @Update
     Completable updateNote(Note note);
 
+    @Query("DELETE FROM note WHERE noteId = :id")
+    void delete(long id);
+
 }
