@@ -7,7 +7,7 @@
     <!-- Text -->
     <color name="lightGray">#b3b3b3</color>
     <color name="gray">#585858</color>
-    <color name="darkGray">#1f1f1f</color>
+    <color name="darkGray">#24292e</color>
 
     <!-- Gradient Colours -->
     <color name="lightPurple">#5757f4</color>
